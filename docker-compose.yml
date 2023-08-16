@@ -1,0 +1,16 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"  # Mapea el puerto 5000 del contenedor al puerto 5000 del host
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8501:8501"  # Mapea el puerto 8501 del contenedor al puerto 8501 del host
+    volumes:
+      - ./frontend:/app  # Monta la carpeta local en el contenedor
+    depends_on:
+      - backend  # Nos aseguramos que el contenedor backend esté iniciado antes del frontend
